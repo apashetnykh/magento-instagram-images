@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem" ><type>skin_css</type><script>css/corevalueinstagram/jquery.fancybox.css</script></action>
+            <action method="addItem" ><type>skin_css</type><script>css/corevalueinstagram/style.css</script></action>
+
+            <action method="addItem" ><type>skin_js</type><script>js/corevalueinstagram/jquery.fancybox.pack.js</script></action>
+        </reference>
+        <reference name="footer">
+            <block type="core/template" before="footer_store_language" name="default_corevalueinstagram" as="default_corevalueinstagram" template="corevalue/instagram/instagram.phtml" />
+        </reference>
+    </default>
+</layout>

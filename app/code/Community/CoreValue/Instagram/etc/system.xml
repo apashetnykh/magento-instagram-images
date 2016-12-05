@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <corevalueinstagram_modules translate="label" module="corevalueinstagram">
+            <label>CoreValue instagram</label>
+            <sort_order>20</sort_order>
+        </corevalueinstagram_modules>
+    </tabs>
+    <sections>
+        <corevalueinstagram translate="label" module="corevalueinstagram">
+            <label>Instagram Settings</label>
+            <tab>corevalueinstagram_modules</tab>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <settings translate="label" module="corevalueinstagram">
+                    <label>Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <return_url translate="label">
+                            <label>Instagram Redirect Url:</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_model>corevalueinstagram/adminhtml_system_config_settings</frontend_model>
+                        </return_url>
+                        <client_id translate="label">
+                            <label>Client ID:</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[Add and save client id before getting access token]]>
+                            </comment>
+                        </client_id>
+                        <client_secret translate="label">
+                            <label>Client Secret:</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[Add and save client secret before getting access token]]>
+                            </comment>
+                        </client_secret>
+                        <access_token translate="label">
+                            <label>Access Token:</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <model>corevalueinstagram/system_config_settings_accessToken</model>
+                            </comment>
+                        </access_token>
+                        <tag_name translate="label">
+                            <label>Tag name:</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[Tag name]]>
+                            </comment>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </tag_name>
+                        <posts_count translate="label">
+                            <label>Post Count:</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>
+                                <![CDATA[Count of posts should be shown]]>
+                            </comment>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </posts_count>
+                    </fields>
+                </settings>
+            </groups>
+        </corevalueinstagram>
+    </sections>
+</config>

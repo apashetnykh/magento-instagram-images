@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<config>
+    <menu>
+        <advancedmenu translate="title">
+            <title>Advanced Menu</title>
+            <children>
+                <corevalueinstagram>
+                    <title>Instagram</title>
+                    <children>
+                        <corevalueinstagramitems translate="title" module="corevalueinstagram">
+                            <title>Posts</title>
+                            <action>corevalueinstagram/adminhtml_items</action>
+                            <sort_order>4</sort_order>
+                        </corevalueinstagramitems>
+                        <corevalueinstagramimport translate="title" module="corevalueinstagram">
+                            <title>Imports New Posts</title>
+                            <action>corevalueinstagram/adminhtml_import</action>
+                            <sort_order>5</sort_order>
+                        </corevalueinstagramimport>
+                    </children>
+                </corevalueinstagram>
+            </children>
+        </advancedmenu>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <advancedmenu>
+                        <children>
+                            <corevalueinstagram translate="title" module="corevalueinstagram">
+                                <title>Instagram</title>
+                                <children>
+                                    <corevalueinstagramitems translate="title" module="corevalueinstagram">
+                                        <title>Instagram Posts</title>
+                                    </corevalueinstagramitems>
+                                    <corevalueinstagramimport translate="title" module="corevalueinstagram">
+                                        <title>Instagram Import</title>
+                                    </corevalueinstagramimport>
+                                </children>
+                            </corevalueinstagram>
+                        </children>
+                    </advancedmenu>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <corevalueinstagram>
+                                        <title>Instagram Settings</title>
+                                    </corevalueinstagram>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

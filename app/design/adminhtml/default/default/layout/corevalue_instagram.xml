@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<layout>
+    <corevalueinstagram_adminhtml_import_index>
+        <reference name="menu">
+            <action method="setActive"><menupath>corevalueinstagram/adminhtml_import</menupath></action>
+        </reference>
+        <reference name="content">
+            <block type="corevalueinstagram/adminhtml_import" name="index_import"></block>
+        </reference>
+    </corevalueinstagram_adminhtml_import_index>
+
+    <corevalueinstagram_adminhtml_items_index>
+        <reference name="menu">
+            <action method="setActive"><menupath>corevalueinstagram/adminhtml_items</menupath></action>
+        </reference>
+        <reference name="content">
+            <block type="corevalueinstagram/adminhtml_items" name="index_item"></block>
+        </reference>
+    </corevalueinstagram_adminhtml_items_index>
+
+    <corevalueinstagram_adminhtml_items_edit>
+        <reference name="menu">
+            <action method="setActive"><menupath>corevalueinstagram/adminhtml_items</menupath></action>
+        </reference>
+        <reference name="content">
+            <block type="corevalueinstagram/adminhtml_items_edit" name="edit_item"></block>
+        </reference>
+        <reference name="left">
+            <block type="corevalueinstagram/adminhtml_items_edit_tabs" name="edit_tabs"></block>
+        </reference>
+    </corevalueinstagram_adminhtml_items_edit>
+
+    <corevalueinstagram_adminhtml_items_related>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="corevalueinstagram/adminhtml_items_edit_tab_related" name="corevalueinstagram.items.edit.tab.related"/>
+            <block type="adminhtml/widget_grid_serializer" name="instagram_related_grid_serializer">
+                <reference name="instagram_related_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>corevalueinstagram.items.edit.tab.related</grid_block_name>
+                        <data_callback>getSelectedRelatedProducts</data_callback>
+                        <hidden_input_name>links[related]</hidden_input_name>
+                        <reload_param_name>products_related</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>position</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </corevalueinstagram_adminhtml_items_related>
+
+    <corevalueinstagram_adminhtml_items_relatedgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="corevalueinstagram/adminhtml_items_edit_tab_related" name="corevalueinstagram.items.edit.tab.related"/>
+        </block>
+    </corevalueinstagram_adminhtml_items_relatedgrid>
+</layout>

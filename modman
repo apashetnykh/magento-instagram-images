@@ -1,0 +1,9 @@
+# CoreValue_Instagram
+app/etc/modules/CoreValue_Instagram.xml                                 app/etc/modules/CoreValue_Instagram.xml
+app/code/Community/CoreValue/Instagram/*                                app/code/community/CoreValue/Instagram
+app/design/frontend/base/default/layout/corevalueinstagram.xml          app/design/frontend/base/default/layout/corevalueinstagram.xml
+app/design/frontend/base/default/template/corevalue/instagram/*         app/design/frontend/base/default/template/corevalue/instagram
+app/design/adminhtml/default/default/layout/corevalue_instagram.xml     app/design/adminhtml/default/default/layout/corevalue_instagram.xml
+skin/frontend/base/default/css/corevalueinstagram/*                     skin/frontend/base/default/css/corevalueinstagram
+skin/frontend/base/default/images/instagram/*                           skin/frontend/base/default/images/instagram
+skin/frontend/base/default/js/corevalueinstagram/*                      skin/frontend/base/default/js/corevalueinstagram

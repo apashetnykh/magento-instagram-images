@@ -1,0 +1,143 @@
+<div class="wrapper instagram-wrapper">
+    <div class="container-fluid">
+        <div class="title-section"  data-animation="fadeInUp">
+            <div class="title-block text-center">
+                <?php echo $this->__('Join the'); ?> <br/>
+                <span class="strong">@ </span><?php echo $this->__('Community'); ?>
+            </div>
+            <div class="text-block text-center text-uppercase">
+                <?php echo $this->__('Follow Us'); ?> @
+            </div>
+        </div>
+    </div>
+    <div class="row" id="main-instagram-items">
+        <div class="col-xs-12 text-center loader-container">
+            <svg width="40" height="40" class="spinner-animation">
+                <use xlink:href="#icon-loader"></use>
+            </svg>
+        </div>
+    </div>
+</div>
+<div class="instagram-popup popup-window" id="popup-instagram" style="display: none;">
+    <img class="post-img" src=""/>
+    <div class="post-information">
+        <div class="products-list"></div>
+        <div class="username-wrap"></div>
+        <div class="date-wrap"></div>
+        <div class="hashtags-wrap"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+
+        jQuery(".instagram-widget-link").fancybox({
+            autoDimensions: false,
+            autoCenter: true,
+            autoHeight: true,
+            width: 'auto',
+            content: $j('#popup-instagram'),
+            fitToView   : false,
+            maxWidth: '100%',
+            aspectRatio: true,
+            helpers: {
+                overlay: {
+                    locked: true
+                }
+            },
+            tpl: {
+                closeBtn: '<span class="fancybox-close"><svg width="25" height="25"><use xlink:href="#icon-close"></use></svg></span>'
+            },
+            beforeShow: function () {
+
+
+                var indexElem = $j(this.element).closest('.instagram-item').index(),
+                    $thisPopup = $j('.fancybox-inner'),
+                    instaPostPhotoUrl = instagramPosts[indexElem].image_url,
+                    instaPostDescription = instagramPosts[indexElem].description,
+                    instaPostUsername = instagramPosts[indexElem].username,
+                    instaPostDate = instagramPosts[indexElem].date,
+                    instaRelatedProducts = instagramPosts[indexElem].products,
+                    instaRelatedProductsLength = instaRelatedProducts.length,
+                    relatedProductTmpl = '';
+
+
+                for (var i = 0; i < instaRelatedProducts.length; i++) {
+                    relatedProductTmpl += '<div class="product">'+
+                        '<img src="' + instaRelatedProducts[i].image_url + '"/>' +
+                        '<div class="title-wrap">' + instaRelatedProducts[i].name + '</div>' +
+                        '<a class="button blocked" href="'+instaRelatedProducts[i].url+'">' + "<?php echo $this->__('see it now!'); ?>" + '</a>'+
+                        '</div>';
+                }
+
+                if(instaRelatedProductsLength) {
+                    $thisPopup.find('.products-list').removeClass('empty-list');
+                } else {
+                    $thisPopup.find('.products-list').addClass('empty-list');
+                }
+                $thisPopup.find('.products-list').html('').append(relatedProductTmpl);
+                $thisPopup.find('.post-img').attr('src', instaPostPhotoUrl);
+                $thisPopup.find('.hashtags-wrap').text(instaPostDescription);
+                $thisPopup.find('.username-wrap').text(instaPostUsername);
+                $thisPopup.find('.date-wrap').text(instaPostDate);
+            },
+            afterShow: function () {
+                if($j('.products-list .product').length >= 3) {
+                    $j('.products-list').slick({
+                        slidesToShow: 2,
+                        prevArrow: '<button type="button" class="slick-prev"><svg width="29" height="14"><use xlink:href="#icon-arrow-left"></use></svg></button>',
+                        nextArrow: '<button type="button" class="slick-next"><svg width="29" height="14"><use xlink:href="#icon-arrow-right"></use></svg></button>',
+                        adaptiveHeight: true,
+                        responsive: [
+                            {
+                                breakpoint: 768,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1
+                                }
+                            }
+                        ]
+                    }).slick('setPosition');
+                }
+                jQuery.fancybox.update();
+            },
+            afterClose : function(){
+                if($j('.products-list .product').length >= 3) {
+                    $j('.products-list').slick("unslick");
+                }
+                $j('body').removeClass('show-fancybox-mobile');
+            }
+        });
+
+        var instagramPosts = [];
+
+        jQuery.ajax({
+                method: "GET",
+                url: "<?php echo Mage::getUrl('ajax_instagram_items', array('_secure' => Mage::app()->getFrontController()->getRequest()->isSecure())); ?>",
+                dataType : 'json',
+                autoDimensions: true
+            })
+            .done(function( data ) {
+                instagramPosts  = data.items.slice(0, 10);
+
+                var postsLength = instagramPosts.length;
+                var template    = '';
+
+                for (var i = 0 ; i < postsLength; i++) {
+                    template += '<div data-animation="fadeIn" data-animation-duration="2s" data-animation-delay="'+ (0.1 * (i  % 5)) + 's" class="col-xs-6 col-sm-6 col-fifth-md-1 instagram-item' +
+//                            (i > 3 ? " hidden-xs" : "") +
+//                            (i > 5 ? " hidden-sm" : "") +
+                            '">' +
+                            '<a href="#" class="instagram-block instagram-widget-link">' +
+                            '<img src="'+instagramPosts[i].image_url+'"  alt="">' +
+                            '</a>' +
+                        '</div>'
+                }
+
+                jQuery('#main-instagram-items').html(template);
+            })
+            .fail(function (msg) {
+                $j('#main-instagram-items').html('<div class="text-center error-load">' + "<?php echo $this->__('Error. Can\'t load data'); ?>" + '</div>');
+            });
+    });
+</script>
